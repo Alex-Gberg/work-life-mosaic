@@ -6,6 +6,7 @@ function randomColorCode() {
 
 function reset() {
   resetForm();
+  resetTable();
 
   sessionStorage.setItem("categories", JSON.stringify([]));
 
@@ -21,13 +22,54 @@ function resetForm() {
   document.getElementById("color").value = randomColorCode();
 }
 
+function resetTable() {
+  let table = document.getElementById("table");
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+}
+
 function addCategory() {
   let arr = JSON.parse(sessionStorage.getItem("categories"));
   if (arr.reduce((a,b) => a + parseInt(b[1]), 0) + parseInt(document.getElementById("hours").value) <= gridWidth * gridWidth - 1) {
-    arr.push([document.getElementById("category").value, document.getElementById("hours").value, document.getElementById("color").value]);
+    let cat = document.getElementById("category").value;
+    let hours = document.getElementById("hours").value;
+    let color = document.getElementById("color").value;
+    arr.push([cat, hours, color]);
     sessionStorage.setItem("categories", JSON.stringify(arr));
     resetForm();
+    addRow(cat, hours, color);
   }
+}
+
+function addRow(category, hours, color) {
+  let table = document.getElementById("table");
+  let row = table.insertRow(-1);
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+
+  cell1.innerHTML = category;
+  cell2.innerHTML = hours;
+  cell3.innerHTML = '<button class="btn btn-danger" onclick="removeEntry(this)">X</button>';
+}
+
+function removeEntry(btn) {
+  let row = btn.parentNode.parentNode;
+  let index = row.rowIndex;
+  removeRow(index);
+  removeCategory(index);
+}
+
+function removeRow(index) {
+  let table = document.getElementById("table");
+  table.deleteRow(index);
+}
+
+function removeCategory(index) {
+  let arr = JSON.parse(sessionStorage.getItem("categories"));
+  arr.splice(index-1, 1);
+  sessionStorage.setItem("categories", JSON.stringify(arr));
 }
 
 function drawGrid() {

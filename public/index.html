@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Work Life Mosaic</title>
+    <title>Work-Life Mosaic</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -12,22 +12,55 @@
 
   <body onload="reset()">
     <div class="container">
-      <div class="jumbotron">
-        <h1>Work Life Mosaic</h1>
+      <!-- The Header -->
+      <div class="jumbotron col-12">
+        <h1>Work-Life Mosaic</h1>
       </div>
       <div class="row">
-        <div class="col-6">
-          <form id="form">
-            <input type="number" id="hours" name="hours" placeholder="Hours" required>
-            <input type="text" id="category" name="category" placeholder="Category" required>
-            <input type="color" id="color" name="color" required>
-            <button id="submit">Add</button>
+
+        <!-- The Inputs -->
+        <div class="col-12 col-md-6">
+
+          <!-- The Form -->
+          <form class="row gx-3 gy-2" id="form">
+            <div class="col-3">
+              <label class="form-label" for="number">Hours</label>
+              <input type="number" class="form-control" id="hours" name="hours" placeholder="0" min="0" max="168" required>
+            </div>
+            <div class="col-7">
+              <label class="form-label" for="category">Category</label>
+              <input type="text" class="form-control" id="category" name="category" placeholder="Work/Sleep..." required>
+            </div>
+            <div class="col-2">
+              <label class="form-label" for="color">Color</label>
+              <input type="color" class="form-control" id="color" name="color" required>
+            </div>
+            <div class="mb-3 col-12">
+              <button class="btn btn-primary col-4" id="submit">Add</button>
+            </div>
           </form>
-          <div class="row">
-            <button id="btn" onclick="fillMosaic()">Draw Mosaic</button>
-            <button id="btn" onclick="reset()">Reset</button>
+
+          <!-- The Table -->
+          <table class="table" id="table">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+          <!-- Grid controls -->
+          <div class="row col-12">
+            <button class="btn btn-success col-6" id="DrawBtn" onclick="fillMosaic()">Draw Mosaic</button>
+            <button class="btn btn-danger col-6" id="resetBtn" onclick="reset()">Reset</button>
           </div>
         </div>
+
+        <!-- The Grid -->
         <div class="col-12 col-md-6">
           <canvas id="myCanvas" width="720" height="720"></canvas>
         </div>
@@ -35,6 +68,7 @@
     </div>
 
 
+    <!-- Scripts -->
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
