@@ -7,13 +7,9 @@ function randomColorCode() {
 function reset() {
   resetForm();
   resetTable();
+  resetGrid();
 
   sessionStorage.setItem("categories", JSON.stringify([]));
-
-  let c = document.getElementById("myCanvas");
-  let ctx = c.getContext('2d');
-  ctx.clearRect(0, 0, c.width, c.height);
-  drawGrid();
 }
 
 function resetForm() {
@@ -27,6 +23,7 @@ function resetTable() {
   while (table.rows.length > 1) {
     table.deleteRow(1);
   }
+  addRow("...", "...", "white", true);
 }
 
 function addCategory() {
@@ -42,16 +39,26 @@ function addCategory() {
   }
 }
 
-function addRow(category, hours, color) {
+function addRow(category, hours, color, placeholder=false) {
   let table = document.getElementById("table");
+  if (!placeholder && table.rows.item(1).cells.item(0).innerHTML == "...") {
+    table.deleteRow(1);
+  }
+
   let row = table.insertRow(-1);
+  row.style = "background-color: " + color + ";";
   let cell1 = row.insertCell(0);
   let cell2 = row.insertCell(1);
   let cell3 = row.insertCell(2);
 
   cell1.innerHTML = category;
   cell2.innerHTML = hours;
-  cell3.innerHTML = '<button class="btn btn-danger" onclick="removeEntry(this)">X</button>';
+  if (placeholder) {
+    cell3.innerHTML = "...";
+  }
+  else {
+    cell3.innerHTML = '<button class="btn btn-danger" onclick="removeEntry(this)">X</button>';
+  }
 }
 
 function removeEntry(btn) {
@@ -72,14 +79,15 @@ function removeCategory(index) {
   sessionStorage.setItem("categories", JSON.stringify(arr));
 }
 
-function drawGrid() {
+function resetGrid() {
   let c = document.getElementById("myCanvas");
   let ctx = c.getContext('2d');
-  ctx.strokeStyle = "black";
-
+  ctx.clearRect(0, 0, c.width, c.height);
+  
   let xvalue = 0;
   let yvalue = 0;
-
+  
+  ctx.strokeStyle = "black";
   for (let x = 0; x <= gridWidth * gridWidth; x++) {
     ctx.strokeRect(xvalue, yvalue, c.width/gridWidth, c.width/gridWidth);
     xvalue += c.width / gridWidth;
@@ -94,6 +102,7 @@ function drawGrid() {
 }
 
 function fillMosaic() {
+  resetGrid();
   let c = document.getElementById("myCanvas");
   let ctx = c.getContext('2d');
   ctx.strokeStyle = "black";
