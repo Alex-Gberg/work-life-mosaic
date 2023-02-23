@@ -71,3 +71,8 @@ function fillMosaic() {
     }
   }
 }
+
+document.getElementById('form').addEventListener('submit', event => {
+  addCategory();
+  event.preventDefault();
+});

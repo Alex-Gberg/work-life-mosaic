@@ -17,12 +17,12 @@
       </div>
       <div class="row">
         <div class="col-6">
-          <form>
-            <input type="number" id="hours" name="hours" placeholder="Hours">
-            <input type="text" id="category" name="category" placeholder="Category">
-            <input type="color" id="color" name="color" value="#0000FF">
+          <form id="form">
+            <input type="number" id="hours" name="hours" placeholder="Hours" required>
+            <input type="text" id="category" name="category" placeholder="Category" required>
+            <input type="color" id="color" name="color" value="#0000FF" required>
+            <button id="submit">Add</button>
           </form>
-          <button id="submit" onclick="addCategory()">Add</button>
           <div class="row">
             <button id="btn" onclick="fillMosaic()">Draw Mosaic</button>
             <button id="btn" onclick="reset()">Reset</button>
