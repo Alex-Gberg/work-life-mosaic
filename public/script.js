@@ -45,7 +45,9 @@ function fillMosaic() {
   let yvalue = 0;
   
   let drawn = 0;
-  for (cat of JSON.parse(sessionStorage.getItem("categories"))) {
+  for (cat of JSON.parse(sessionStorage.getItem("categories")).sort((a,b) => {
+    return b[1] - a[1];
+  })) {
     ctx.fillStyle = cat[2];
     for (let x = 0; x < cat[1]; x++) {
       ctx.fillRect(xvalue, yvalue, c.width/gridWidth, c.width/gridWidth);
