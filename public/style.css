@@ -6,5 +6,6 @@ html, body, .container
 
 canvas {
   border: 2px solid black;
+  max-width: 100%;
   background-color: lightgrey;
 }
