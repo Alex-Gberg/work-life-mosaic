@@ -11,8 +11,10 @@ function reset() {
 
 function addCategory() {
   let arr = JSON.parse(sessionStorage.getItem("categories"));
-  arr.push([document.getElementById("category").value, document.getElementById("hours").value, document.getElementById("color").value]);
-  sessionStorage.setItem("categories", JSON.stringify(arr));
+  if (arr.reduce((a,b) => a + parseInt(b[1]), 0) + parseInt(document.getElementById("hours").value) <= gridWidth * gridWidth - 1) {
+    arr.push([document.getElementById("category").value, document.getElementById("hours").value, document.getElementById("color").value]);
+    sessionStorage.setItem("categories", JSON.stringify(arr));
+  }
 }
 
 function drawGrid() {
