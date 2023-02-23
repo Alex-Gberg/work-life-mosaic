@@ -1,6 +1,12 @@
 let gridWidth = 13;
 
+function randomColorCode() {
+  return "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+
 function reset() {
+  resetForm();
+
   sessionStorage.setItem("categories", JSON.stringify([]));
 
   let c = document.getElementById("myCanvas");
@@ -9,11 +15,18 @@ function reset() {
   drawGrid();
 }
 
+function resetForm() {
+  document.getElementById("category").value = "";
+  document.getElementById("hours").value = "";
+  document.getElementById("color").value = randomColorCode();
+}
+
 function addCategory() {
   let arr = JSON.parse(sessionStorage.getItem("categories"));
   if (arr.reduce((a,b) => a + parseInt(b[1]), 0) + parseInt(document.getElementById("hours").value) <= gridWidth * gridWidth - 1) {
     arr.push([document.getElementById("category").value, document.getElementById("hours").value, document.getElementById("color").value]);
     sessionStorage.setItem("categories", JSON.stringify(arr));
+    resetForm();
   }
 }
 
