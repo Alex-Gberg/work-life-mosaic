@@ -57,7 +57,7 @@ function addRow(category, hours, color, placeholder=false) {
     cell3.innerHTML = "...";
   }
   else {
-    cell3.innerHTML = '<button class="btn btn-danger" onclick="removeEntry(this)">X</button>';
+    cell3.innerHTML = '<button class="btn btn-danger btn-sm" onclick="removeEntry(this)">X</button>';
   }
 }
 

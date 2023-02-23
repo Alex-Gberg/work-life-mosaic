@@ -52,16 +52,15 @@
             <tbody>
             </tbody>
           </table>
-
-          <!-- Grid controls -->
-          <div class="row col-12 mb-3">
-            <button class="btn btn-success col-6" id="DrawBtn" onclick="fillMosaic()">Draw Mosaic</button>
-            <button class="btn btn-danger col-6" id="resetBtn" onclick="reset()">Reset</button>
-          </div>
         </div>
 
         <!-- The Grid -->
         <div class="col-12 col-md-6">
+          <!-- Grid controls -->
+          <div class="btn-group mb-1 d-flex">
+            <button class="btn btn-success" id="DrawBtn" onclick="fillMosaic()">Fill Mosaic</button>
+            <button class="btn btn-danger" id="resetBtn" onclick="reset()">Reset</button>
+          </div>
           <canvas id="myCanvas" width="720" height="720"></canvas>
         </div>
       </div>
