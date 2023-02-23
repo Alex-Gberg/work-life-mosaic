@@ -1,7 +1,7 @@
 let gridWidth = 13;
 
 function reset() {
-  localStorage.setItem("categories", JSON.stringify([]));
+  sessionStorage.setItem("categories", JSON.stringify([]));
 
   let c = document.getElementById("myCanvas");
   let ctx = c.getContext('2d');
@@ -10,9 +10,9 @@ function reset() {
 }
 
 function addCategory() {
-  let arr = JSON.parse(localStorage.getItem("categories"));
+  let arr = JSON.parse(sessionStorage.getItem("categories"));
   arr.push([document.getElementById("category").value, document.getElementById("hours").value]);
-  localStorage.setItem("categories", JSON.stringify(arr));
+  sessionStorage.setItem("categories", JSON.stringify(arr));
 }
 
 function drawGrid() {
