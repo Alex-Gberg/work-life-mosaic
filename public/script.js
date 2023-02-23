@@ -11,7 +11,7 @@ function reset() {
 
 function addCategory() {
   let arr = JSON.parse(sessionStorage.getItem("categories"));
-  arr.push([document.getElementById("category").value, document.getElementById("hours").value]);
+  arr.push([document.getElementById("category").value, document.getElementById("hours").value, document.getElementById("color").value]);
   sessionStorage.setItem("categories", JSON.stringify(arr));
 }
 
