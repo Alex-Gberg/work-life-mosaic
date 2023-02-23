@@ -44,18 +44,26 @@ function fillMosaic() {
   let xvalue = 0;
   let yvalue = 0;
   
-  // let testCategories = [["work", 5, "#ff2d00"], ["school", 3, "#0c00ff"], ["sleep", 8, "#27ff00"]];
-  
+  let drawn = 0;
   for (cat of JSON.parse(sessionStorage.getItem("categories"))) {
     ctx.fillStyle = cat[2];
     for (let x = 0; x < cat[1]; x++) {
       ctx.fillRect(xvalue, yvalue, c.width/gridWidth, c.width/gridWidth);
       ctx.strokeRect(xvalue, yvalue, c.width/gridWidth, c.width/gridWidth);
+      drawn++;
+      if (drawn >= gridWidth*gridWidth-1) {
+        break;
+      }
+
       xvalue += c.width/gridWidth;
       if (xvalue > c.width-c.width/gridWidth) {
         xvalue = 0;
         yvalue += c.width/gridWidth;
       }
+    }
+
+    if (drawn >= gridWidth * gridWidth - 1) {
+      break;
     }
   }
 }
