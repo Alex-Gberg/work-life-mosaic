@@ -5,4 +5,4 @@
 Enter the number of hours spent on different activities in a week and receive a grid based visualization where each square represents one hour of your time.
 
 ## Screenshot
-[Screenshot](./resources/work-life-example.png)
+![Screenshot](./resources/work-life-example.png)
